@@ -22,8 +22,8 @@ public class ShootingBasket implements ActionListener , KeyListener ,MouseListen
 	public static JFrame JF;
 	public static myPanel MP;
 	public static ShootingBasket SB;
-	Ball b = new Ball(200,200,35);
-	Player p = new Player(100,300,50);
+	Ball b = new Ball(100,400,35);
+	Player p = new Player(70,450,50);
 	//±±»s
 	public int mouseX;
 	public int mouseY;
@@ -95,6 +95,7 @@ public class ShootingBasket implements ActionListener , KeyListener ,MouseListen
 	@Override
 	public void mousePressed(MouseEvent e) {
 		//ÂI¿ï
+		b.Shoot(20, 45, true);
 	
 	}
 	@Override
