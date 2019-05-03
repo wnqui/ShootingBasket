@@ -15,8 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import com.sun.xml.internal.bind.v2.WellKnownNamespace;
-
 
 public class ShootingBasket implements ActionListener , KeyListener ,MouseListener ,MouseMotionListener{
 	//常數
@@ -138,20 +136,16 @@ public class ShootingBasket implements ActionListener , KeyListener ,MouseListen
 		
 	}
 	@Override
-	public void keyReleased(KeyEvent e) {
-		//投球投出
-	}
-	@Override
 	public void mousePressed(MouseEvent e) {
-		//點選
 		power =0;
 		b.setShoot(false);
 		b.setXY(100, 430);
 		forPower =true;
 		
-		
-	
 	}
+	
+	@Override
+	public void keyReleased(KeyEvent e) {}
 	@Override
 	public void keyTyped(KeyEvent arg0) {}
 	@Override

@@ -23,8 +23,7 @@ public class Hoop {
 		
 		g2.setColor(Color.black);
 		g2.drawRect(x, y, width, height);
-		
-		
+			
 		
 	}
 	

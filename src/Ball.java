@@ -8,10 +8,9 @@ public class Ball {
 	private int y;
 	private int dx;
 	private int dy;
-	private int maxY;
 	private int size;
 	private boolean isShoot;
-	private int power;
+	protected int power;
 	private int maxPower;
 	protected int g =2;
 	private double angle;
