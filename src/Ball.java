@@ -15,6 +15,8 @@ public class Ball {
 	private int maxPower;
 	protected int g =2;
 	private double angle;
+	public int score;
+	public boolean getScore;
 	
 	Ball(int x ,int y ,int size){
 		this.x = x;
@@ -27,13 +29,13 @@ public class Ball {
 		this.power = 0;
 		dx = (int) (power/2 * Math.cos(Math.toRadians(this.angle)));
 		dy = (int) (power * Math.sin(Math.toRadians(this.angle)));
-		this.maxPower= dy;
+		this.maxPower= Math.abs(dy);
 		
 		System.out.println(dx +" "+ dy);
 	
 	}
 	
-	public void move() {
+	public void move(Hoop hoop) {
 		if(isShoot) {
 		
 			x += dx;				
@@ -56,6 +58,42 @@ public class Ball {
 				x=51;
 				dx = (-1)* (dx *3/4);	
 			}
+			
+			if( x + size < hoop.getX()){
+				
+			}else if(x > hoop.getX()+20) {
+				
+			}else if( y +size < hoop.getY()) {
+				
+			}else if( y > hoop.getY()+10) {
+				
+			}else {
+				
+				if( x +size < hoop.getX()+20  && y + size/2 > hoop.getY() && y+size/2  < hoop.getY()+20 ) {
+					if(x < hoop.getX()) {
+						x = hoop.getX()-size -2;						
+					}else {
+						x = hoop.getX()+20;
+					}
+					dx = (-1)* (dx *3/4);	
+					
+				}else if(y+size >= hoop.getY() && y <= hoop.getY() && x +size > hoop.getX() && x+size < hoop.getX()+20) {	
+					y = hoop.getY() -size;
+					maxPower = maxPower *8/10;
+					dy = maxPower ;	
+					dx = (int)(dx*0.99);
+					
+				}
+				
+			}
+			if( x> hoop.getX()+20 && y + size > hoop.getY() && y < hoop.getY()+20) {
+				if(getScore) {
+					score ++;
+					getScore = false;
+				}
+				
+			}
+
 		
 		}
 

@@ -28,6 +28,7 @@ public class ShootingBasket implements ActionListener , KeyListener ,MouseListen
 	public static ShootingBasket SB;
 	Player p = new Player(70,450,50);
 	Ball b = new Ball(100,430,35);
+	Hoop hoop = new Hoop(670,200,80,20);
 	//控製
 	public int mouseX;
 	public int mouseY;
@@ -58,7 +59,7 @@ public class ShootingBasket implements ActionListener , KeyListener ,MouseListen
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		b.move();
+		b.move(hoop);
 		
 		if(forPower) {
 			
@@ -99,6 +100,7 @@ public class ShootingBasket implements ActionListener , KeyListener ,MouseListen
 		g2.setColor(Color.red);
 		g2.setFont(new Font("",1,20));
 		g2.drawString("power:"+power, 70, 70);
+		g2.drawString("score:"+b.score, 600, 70);
 		g2.setColor(Color.lightGray);
 		g2.fillRect(70, 75, 100, 5);
 		g2.setColor(Color.yellow);
@@ -106,6 +108,8 @@ public class ShootingBasket implements ActionListener , KeyListener ,MouseListen
 		
 		p.drawPlayer(g2);
 		b.darwBall(g2);
+		
+		hoop.drawHoop(g2);
 	
 	}
 	
@@ -125,6 +129,7 @@ public class ShootingBasket implements ActionListener , KeyListener ,MouseListen
 	public void mouseReleased(MouseEvent arg0) {
 		//投球蓄力
 		forPower = false;
+		b.getScore = true;
 		double dx = mouseX - b.getX();
 		double dy = b.getY() - mouseY;
 		double angle = Math.atan2(dy, dx) / Math.PI *180;
