@@ -13,59 +13,50 @@ public class Ball {
 	private boolean isShoot;
 	private int power;
 	private int maxPower;
-	protected int g =5;
-	private int angle;
+	protected int g =2;
+	private double angle;
 	
 	Ball(int x ,int y ,int size){
 		this.x = x;
 		this.y = y;
 		this.size = size;
 	}
-	public void Shoot(int power, int angle,boolean isShoot) {
+	public void Shoot(int power, double angle,boolean isShoot) {
 		this.isShoot = isShoot;
-		this.maxPower= power;
-		this.angle = angle;
+		this.angle = angle  ;
 		this.power = 0;
-		g = 0;
-		dy = (int)(3*power * Math.cos(angle));
-		dx = power;
+		dx = (int) (power/2 * Math.cos(Math.toRadians(this.angle)));
+		dy = (int) (power * Math.sin(Math.toRadians(this.angle)));
+		this.maxPower= dy;
+		
+		System.out.println(dx +" "+ dy);
 	
 	}
 	
 	public void move() {
 		if(isShoot) {
 		
-				x += dx;				
-				y -= dy;
-			
-			// 最高位能
-			if(y > maxY) maxY =y;
-			//dx 碰牆 -50％ 落地-10％
-			
-			//如果有位能dy dy遞減，dy=0 ，y為最高處，轉成向下 g遞增(最大10) 直到落地再反彈
-			if( y > 500) {
-				y =499;
+			x += dx;				
+			y -= dy;		
+			dy -= g;
+					
+			//落邊減速
+			if( y > 550-size) {
+				y = 549-size;
 				maxPower = maxPower *8/10;
-				dy = maxPower ;
-				g =5;
-			}
-			if(dy <= 0) {
-				//重力加速度
-				if( g < 16) g +=2;
-				y += g;
-			
-				//落地反彈，加速度歸0
-			}else {
-				dy --;				
-			}				
-			
-			if(x >750) {
-				x = 749;
-				dx = (-1)* (dx /2);					
+				dy = maxPower ;	
+				dx = (int)(dx*0.99);
+			}		
+			//邊界減速
+			if(x >750-size) {
+				x = 749-size;
+				dx = (-1)* (dx *3/4);					
 				
+			}else if( x <50) {
+				x=51;
+				dx = (-1)* (dx *3/4);	
 			}
-			
-			// y 落地 dy = maxY -80％
+		
 		}
 
 	}
@@ -78,5 +69,18 @@ public class Ball {
 		g2.setColor(Color.black);
 		g2.drawOval(x, y, size, size);
 	}
-
+	
+	public int getX() {
+		return x;
+	}
+	public int getY(){
+		return y;
+	}
+	public void setXY(int x ,int y) {
+		this.x = x;
+		this.y = y;
+	}
+	public void setShoot(boolean isShoot) {
+		this.isShoot = isShoot;
+	}
 }
